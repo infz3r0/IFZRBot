@@ -52,7 +52,7 @@
                         @Html.Action("_GetRoles", new { uid = user.Id })
                     </td>
                     <td>
-                        <a class="btn visible-lg-inline-block btn-warning" href="#">Change roles</a>
+                        <a class="btn visible-lg-inline-block btn-warning" href="@Url.Action("ChangeRole", "AdminUserManager", new { uid = user.Id })">Change roles</a>
                         <a class="btn visible-lg-inline-block btn-danger" href="#">Delete user</a>
                     </td>
                 </tr>

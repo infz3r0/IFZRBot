@@ -4,17 +4,46 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IFZRBot.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using PagedList;
 
 namespace IFZRBot.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminUserManagerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: AdminUserManager
-        [Authorize(Roles ="Admin")]
         public ActionResult Index(int? page)
         {
             List<ApplicationUser> users = db.Users.ToList();
@@ -39,7 +68,57 @@ namespace IFZRBot.Controllers
             return PartialView(uroles);
         }
 
+        public ActionResult ChangeRole(string uid)
+        {
+            if (string.IsNullOrEmpty(uid))
+            {
+                return RedirectToAction("Index");
+            }
 
+            ApplicationUser user = db.Users.Find(uid);
+            if (user == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            List<IdentityRole> roles = db.Roles.ToList();
+            foreach (IdentityRole role in roles)
+            {
+                items.Add(new SelectListItem { Text = role.Name.ToString(), Value = role.Id.ToString() });
+            }
+
+            ViewBag.listrole = items;
+
+            return View(user);
+        }
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeRole(ApplicationUser model, string listrole)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("ChangeRole", new { uid = model.Id });
+            }
+
+            ApplicationUser user = db.Users.Find(model.Id);
+            IdentityRole r = db.Roles.Find(listrole);
+
+            if (user == null || r == null)
+            {
+                return RedirectToAction("ChangeRole", new { uid = model.Id });
+            }
+
+            UserManager.RemoveFromRole(user.Id, "User");
+            UserManager.RemoveFromRole(user.Id, "Admin");
+            UserManager.AddToRole(user.Id, r.Name);
+
+
+            ViewBag.Message = "Change role success";
+            return RedirectToAction("Index");
+        }
 
 
         //end

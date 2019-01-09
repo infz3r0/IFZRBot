@@ -278,6 +278,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\AdminUserManager\Index.cshtml" />
     <Content Include="Views\AdminUserManager\_GetRoles.cshtml" />
+    <Content Include="Views\AdminUserManager\ChangeRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
