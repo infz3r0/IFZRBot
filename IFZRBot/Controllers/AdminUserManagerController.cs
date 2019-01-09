@@ -68,8 +68,9 @@ namespace IFZRBot.Controllers
             return PartialView(uroles);
         }
 
-        public ActionResult ChangeRole(string uid)
+        public ActionResult ChangeRole(string uid, string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             if (string.IsNullOrEmpty(uid))
             {
                 return RedirectToAction("Index");
@@ -96,7 +97,7 @@ namespace IFZRBot.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeRole(ApplicationUser model, string listrole)
+        public ActionResult ChangeRole(ApplicationUser model, string listrole, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -117,9 +118,49 @@ namespace IFZRBot.Controllers
 
 
             ViewBag.Message = "Change role success";
-            return RedirectToAction("Index");
+            return RedirectToLocal(returnUrl);
         }
 
+        [HttpPost]
+        public ActionResult Delete(FormCollection form, string returnUrl)
+        {
+            string uid = form["id"];
+
+            ApplicationUser user = db.Users.Find(uid);
+            if (user != null)
+            {
+                UserManager.RemoveFromRole(user.Id, "User");
+                UserManager.RemoveFromRole(user.Id, "Admin");
+                try
+                {
+                    db.Users.Remove(user);
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                ViewBag.Message = "User has been deleted.";
+            }
+            else
+            {
+                ViewBag.Message = "Error";
+            }
+            ViewBag.IsMessage = true;
+
+
+            return RedirectToLocal(returnUrl);
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
+        }
 
         //end
     }
