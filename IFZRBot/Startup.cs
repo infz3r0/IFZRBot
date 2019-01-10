@@ -4,6 +4,7 @@ using IFZRBot.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
+[assembly: OwinStartup(typeof(IFZRBot.Startup))]
 [assembly: OwinStartupAttribute(typeof(IFZRBot.Startup))]
 namespace IFZRBot
 {
@@ -11,6 +12,7 @@ namespace IFZRBot
     {
         public void Configuration(IAppBuilder app)
         {
+            app.MapSignalR();
             ConfigureAuth(app);
             createRolesandUsers();
         }
