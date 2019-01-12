@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="56a2d4040e294265bf5326009b8d3983" Name="Diagram1">
+        <EntityTypeShape EntityType="ifzrtempModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.area" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.AspNetRole" Width="1.5" PointX="1.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.AspNetUserClaim" Width="1.5" PointX="6" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.AspNetUserLogin" Width="1.5" PointX="6" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.AspNetUser" Width="1.5" PointX="3.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.combat" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.combat_turn" Width="1.5" PointX="10.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.equip_type" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.item" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.item_drop" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.Item_type" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.monster" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.monster_drop" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.player" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.player_equip" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.player_inventory" Width="1.5" PointX="11.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.player_skill" Width="1.5" PointX="11.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ifzrtempModel.skill" Width="1.5" PointX="9" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="ifzrtempModel.FK__item_drop__area___7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player__player_l__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player__player_i__05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__combat__monster___797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__combat__player_i__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__combat_turn__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player_eq__equip__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__item__item_type___7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__item_drop__item___01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__monster_d__item___00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player_eq__item___7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player_in__item___7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__item_drop__skill__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__monster_d__monst__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player_eq__playe__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player_in__playe__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player_sk__playe__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.FK__player_sk__skill__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="ifzrtempModel.monster_spawn_area" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

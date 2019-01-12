@@ -1,0 +1,1514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ifzrtempModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="area_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="area_name" Type="varchar" MaxLength="30" />
+          <Property Name="area_lv" Type="int" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="displayname" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="combat">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="monster_id" />
+          </Key>
+          <Property Name="player_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="monster_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="player_win" Type="bit" />
+        </EntityType>
+        <EntityType Name="combat_turn">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="monster_id" />
+            <PropertyRef Name="turn" />
+          </Key>
+          <Property Name="player_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="monster_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="turn" Type="int" Nullable="false" />
+          <Property Name="player_dmg" Type="float" />
+          <Property Name="monster_dmg" Type="float" />
+        </EntityType>
+        <EntityType Name="equip_type">
+          <Key>
+            <PropertyRef Name="equip_type_id" />
+          </Key>
+          <Property Name="equip_type_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="equip_type_name" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_name" Type="varchar" MaxLength="30" />
+          <Property Name="item_info" Type="varchar(max)" />
+          <Property Name="item_type_id" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="item_drop">
+          <Key>
+            <PropertyRef Name="area_id" />
+            <PropertyRef Name="skill_id_need" />
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="area_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="skill_id_need" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_drop_chance" Type="float" />
+          <Property Name="skill_level_need" Type="int" />
+        </EntityType>
+        <EntityType Name="Item_type">
+          <Key>
+            <PropertyRef Name="item_type_id" />
+          </Key>
+          <Property Name="item_type_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_type_name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="monster">
+          <Key>
+            <PropertyRef Name="monster_id" />
+          </Key>
+          <Property Name="monster_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="monster_name" Type="varchar" MaxLength="30" />
+          <Property Name="monster_str" Type="int" />
+          <Property Name="monster_agi" Type="int" />
+          <Property Name="monster_int" Type="int" />
+          <Property Name="monster_max_hp" Type="float" />
+          <Property Name="monster_atk" Type="float" />
+          <Property Name="monster_arm" Type="float" />
+          <Property Name="monster_crit" Type="float" />
+          <Property Name="monster_critdmg" Type="float" />
+          <Property Name="monster_eva" Type="float" />
+          <Property Name="monster_exp" Type="bigint" />
+        </EntityType>
+        <EntityType Name="monster_drop">
+          <Key>
+            <PropertyRef Name="item_id" />
+            <PropertyRef Name="monster_id" />
+          </Key>
+          <Property Name="item_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="monster_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="monster_drop_chance" Type="float" />
+        </EntityType>
+        <EntityType Name="monster_spawn_area">
+          <Key>
+            <PropertyRef Name="area_id" />
+            <PropertyRef Name="monster_id" />
+          </Key>
+          <Property Name="area_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="monster_id" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="player">
+          <Key>
+            <PropertyRef Name="player_id" />
+          </Key>
+          <Property Name="player_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="player_location" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="player_name" Type="nvarchar" MaxLength="30" />
+          <Property Name="player_stat_point" Type="int" />
+          <Property Name="player_level" Type="int" />
+          <Property Name="player_exp" Type="bigint" />
+          <Property Name="player_exp_next_lv" Type="bigint" />
+          <Property Name="player_str" Type="int" />
+          <Property Name="player_agi" Type="int" />
+          <Property Name="player_int" Type="int" />
+          <Property Name="player_atk" Type="float" />
+          <Property Name="player_arm" Type="float" />
+          <Property Name="player_max_hp" Type="float" />
+          <Property Name="player_hp" Type="float" />
+          <Property Name="player_crit" Type="float" />
+          <Property Name="player_critdmg" Type="float" />
+          <Property Name="player_eva" Type="float" />
+        </EntityType>
+        <EntityType Name="player_equip">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="player_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="item_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="equip_type_id" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="player_inventory">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="player_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="item_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="player_skill">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="skill_id" />
+          </Key>
+          <Property Name="player_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="skill_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="skill_level" Type="int" />
+          <Property Name="skill_exp" Type="bigint" />
+          <Property Name="skill_exp_next_level" Type="bigint" />
+        </EntityType>
+        <EntityType Name="skill">
+          <Key>
+            <PropertyRef Name="skill_id" />
+          </Key>
+          <Property Name="skill_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="skill_name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__combat__monster___797309D9">
+          <End Role="monster" Type="Self.monster" Multiplicity="1" />
+          <End Role="combat" Type="Self.combat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="monster">
+              <PropertyRef Name="monster_id" />
+            </Principal>
+            <Dependent Role="combat">
+              <PropertyRef Name="monster_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__combat__player_i__75A278F5">
+          <End Role="player" Type="Self.player" Multiplicity="1" />
+          <End Role="combat" Type="Self.combat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="player">
+              <PropertyRef Name="player_id" />
+            </Principal>
+            <Dependent Role="combat">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__combat_turn__03F0984C">
+          <End Role="combat" Type="Self.combat" Multiplicity="1" />
+          <End Role="combat_turn" Type="Self.combat_turn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="combat">
+              <PropertyRef Name="player_id" />
+              <PropertyRef Name="monster_id" />
+            </Principal>
+            <Dependent Role="combat_turn">
+              <PropertyRef Name="player_id" />
+              <PropertyRef Name="monster_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__item__item_type___7D439ABD">
+          <End Role="Item_type" Type="Self.Item_type" Multiplicity="1" />
+          <End Role="item" Type="Self.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_type">
+              <PropertyRef Name="item_type_id" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="item_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__item_drop__area___7C4F7684">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="item_drop" Type="Self.item_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="area_id" />
+            </Principal>
+            <Dependent Role="item_drop">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__item_drop__item___01142BA1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="item_drop" Type="Self.item_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="item_drop">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__item_drop__skill__02084FDA">
+          <End Role="skill" Type="Self.skill" Multiplicity="1" />
+          <End Role="item_drop" Type="Self.item_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skill">
+              <PropertyRef Name="skill_id" />
+            </Principal>
+            <Dependent Role="item_drop">
+              <PropertyRef Name="skill_id_need" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__monster_d__item___00200768">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="monster_drop" Type="Self.monster_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="monster_drop">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__monster_d__monst__787EE5A0">
+          <End Role="monster" Type="Self.monster" Multiplicity="1" />
+          <End Role="monster_drop" Type="Self.monster_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="monster">
+              <PropertyRef Name="monster_id" />
+            </Principal>
+            <Dependent Role="monster_drop">
+              <PropertyRef Name="monster_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__monster_s__area___7A672E12">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="monster_spawn_area" Type="Self.monster_spawn_area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="area_id" />
+            </Principal>
+            <Dependent Role="monster_spawn_area">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__monster_s__monst__778AC167">
+          <End Role="monster" Type="Self.monster" Multiplicity="1" />
+          <End Role="monster_spawn_area" Type="Self.monster_spawn_area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="monster">
+              <PropertyRef Name="monster_id" />
+            </Principal>
+            <Dependent Role="monster_spawn_area">
+              <PropertyRef Name="monster_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player__player_i__05D8E0BE">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="player" Type="Self.player" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="player">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player__player_l__7B5B524B">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="player" Type="Self.player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="area_id" />
+            </Principal>
+            <Dependent Role="player">
+              <PropertyRef Name="player_location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_eq__equip__04E4BC85">
+          <End Role="equip_type" Type="Self.equip_type" Multiplicity="1" />
+          <End Role="player_equip" Type="Self.player_equip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equip_type">
+              <PropertyRef Name="equip_type_id" />
+            </Principal>
+            <Dependent Role="player_equip">
+              <PropertyRef Name="equip_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_eq__item___7F2BE32F">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="player_equip" Type="Self.player_equip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="player_equip">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_eq__playe__74AE54BC">
+          <End Role="player" Type="Self.player" Multiplicity="1" />
+          <End Role="player_equip" Type="Self.player_equip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="player">
+              <PropertyRef Name="player_id" />
+            </Principal>
+            <Dependent Role="player_equip">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_in__item___7E37BEF6">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="player_inventory" Type="Self.player_inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="player_inventory">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_in__playe__73BA3083">
+          <End Role="player" Type="Self.player" Multiplicity="1" />
+          <End Role="player_inventory" Type="Self.player_inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="player">
+              <PropertyRef Name="player_id" />
+            </Principal>
+            <Dependent Role="player_inventory">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_sk__playe__76969D2E">
+          <End Role="player" Type="Self.player" Multiplicity="1" />
+          <End Role="player_skill" Type="Self.player_skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="player">
+              <PropertyRef Name="player_id" />
+            </Principal>
+            <Dependent Role="player_skill">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_sk__skill__02FC7413">
+          <End Role="skill" Type="Self.skill" Multiplicity="1" />
+          <End Role="player_skill" Type="Self.player_skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skill">
+              <PropertyRef Name="skill_id" />
+            </Principal>
+            <Dependent Role="player_skill">
+              <PropertyRef Name="skill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ifzrtempModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="combat" EntityType="Self.combat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="combat_turn" EntityType="Self.combat_turn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="equip_type" EntityType="Self.equip_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="item" EntityType="Self.item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="item_drop" EntityType="Self.item_drop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_type" EntityType="Self.Item_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="monster" EntityType="Self.monster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="monster_drop" EntityType="Self.monster_drop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="monster_spawn_area" EntityType="Self.monster_spawn_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="player" EntityType="Self.player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="player_equip" EntityType="Self.player_equip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="player_inventory" EntityType="Self.player_inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="player_skill" EntityType="Self.player_skill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="skill" EntityType="Self.skill" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__combat__monster___797309D9" Association="Self.FK__combat__monster___797309D9">
+            <End Role="monster" EntitySet="monster" />
+            <End Role="combat" EntitySet="combat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__combat__player_i__75A278F5" Association="Self.FK__combat__player_i__75A278F5">
+            <End Role="player" EntitySet="player" />
+            <End Role="combat" EntitySet="combat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__combat_turn__03F0984C" Association="Self.FK__combat_turn__03F0984C">
+            <End Role="combat" EntitySet="combat" />
+            <End Role="combat_turn" EntitySet="combat_turn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__item__item_type___7D439ABD" Association="Self.FK__item__item_type___7D439ABD">
+            <End Role="Item_type" EntitySet="Item_type" />
+            <End Role="item" EntitySet="item" />
+          </AssociationSet>
+          <AssociationSet Name="FK__item_drop__area___7C4F7684" Association="Self.FK__item_drop__area___7C4F7684">
+            <End Role="area" EntitySet="area" />
+            <End Role="item_drop" EntitySet="item_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__item_drop__item___01142BA1" Association="Self.FK__item_drop__item___01142BA1">
+            <End Role="item" EntitySet="item" />
+            <End Role="item_drop" EntitySet="item_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__item_drop__skill__02084FDA" Association="Self.FK__item_drop__skill__02084FDA">
+            <End Role="skill" EntitySet="skill" />
+            <End Role="item_drop" EntitySet="item_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__monster_d__item___00200768" Association="Self.FK__monster_d__item___00200768">
+            <End Role="item" EntitySet="item" />
+            <End Role="monster_drop" EntitySet="monster_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__monster_d__monst__787EE5A0" Association="Self.FK__monster_d__monst__787EE5A0">
+            <End Role="monster" EntitySet="monster" />
+            <End Role="monster_drop" EntitySet="monster_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__monster_s__area___7A672E12" Association="Self.FK__monster_s__area___7A672E12">
+            <End Role="area" EntitySet="area" />
+            <End Role="monster_spawn_area" EntitySet="monster_spawn_area" />
+          </AssociationSet>
+          <AssociationSet Name="FK__monster_s__monst__778AC167" Association="Self.FK__monster_s__monst__778AC167">
+            <End Role="monster" EntitySet="monster" />
+            <End Role="monster_spawn_area" EntitySet="monster_spawn_area" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player__player_i__05D8E0BE" Association="Self.FK__player__player_i__05D8E0BE">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="player" EntitySet="player" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player__player_l__7B5B524B" Association="Self.FK__player__player_l__7B5B524B">
+            <End Role="area" EntitySet="area" />
+            <End Role="player" EntitySet="player" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_eq__equip__04E4BC85" Association="Self.FK__player_eq__equip__04E4BC85">
+            <End Role="equip_type" EntitySet="equip_type" />
+            <End Role="player_equip" EntitySet="player_equip" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_eq__item___7F2BE32F" Association="Self.FK__player_eq__item___7F2BE32F">
+            <End Role="item" EntitySet="item" />
+            <End Role="player_equip" EntitySet="player_equip" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_eq__playe__74AE54BC" Association="Self.FK__player_eq__playe__74AE54BC">
+            <End Role="player" EntitySet="player" />
+            <End Role="player_equip" EntitySet="player_equip" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_in__item___7E37BEF6" Association="Self.FK__player_in__item___7E37BEF6">
+            <End Role="item" EntitySet="item" />
+            <End Role="player_inventory" EntitySet="player_inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_in__playe__73BA3083" Association="Self.FK__player_in__playe__73BA3083">
+            <End Role="player" EntitySet="player" />
+            <End Role="player_inventory" EntitySet="player_inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_sk__playe__76969D2E" Association="Self.FK__player_sk__playe__76969D2E">
+            <End Role="player" EntitySet="player" />
+            <End Role="player_skill" EntitySet="player_skill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_sk__skill__02FC7413" Association="Self.FK__player_sk__skill__02FC7413">
+            <End Role="skill" EntitySet="skill" />
+            <End Role="player_skill" EntitySet="player_skill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ifzrtempModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="area_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="area_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="area_lv" Type="Int32" />
+          <NavigationProperty Name="item_drop" Relationship="Self.FK__item_drop__area___7C4F7684" FromRole="area" ToRole="item_drop" />
+          <NavigationProperty Name="players" Relationship="Self.FK__player__player_l__7B5B524B" FromRole="area" ToRole="player" />
+          <NavigationProperty Name="monsters" Relationship="Self.monster_spawn_area" FromRole="area" ToRole="monster" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="displayname" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="player" Relationship="Self.FK__player__player_i__05D8E0BE" FromRole="AspNetUsers" ToRole="player" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="combat">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="monster_id" />
+          </Key>
+          <Property Name="player_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="monster_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_time" Type="DateTime" Precision="3" />
+          <Property Name="player_win" Type="Boolean" />
+          <NavigationProperty Name="monster" Relationship="Self.FK__combat__monster___797309D9" FromRole="combat" ToRole="monster" />
+          <NavigationProperty Name="player" Relationship="Self.FK__combat__player_i__75A278F5" FromRole="combat" ToRole="player" />
+          <NavigationProperty Name="combat_turn" Relationship="Self.FK__combat_turn__03F0984C" FromRole="combat" ToRole="combat_turn" />
+        </EntityType>
+        <EntityType Name="combat_turn">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="monster_id" />
+            <PropertyRef Name="turn" />
+          </Key>
+          <Property Name="player_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="monster_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="turn" Type="Int32" Nullable="false" />
+          <Property Name="player_dmg" Type="Double" />
+          <Property Name="monster_dmg" Type="Double" />
+          <NavigationProperty Name="combat" Relationship="Self.FK__combat_turn__03F0984C" FromRole="combat_turn" ToRole="combat" />
+        </EntityType>
+        <EntityType Name="equip_type">
+          <Key>
+            <PropertyRef Name="equip_type_id" />
+          </Key>
+          <Property Name="equip_type_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="equip_type_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="player_equip" Relationship="Self.FK__player_eq__equip__04E4BC85" FromRole="equip_type" ToRole="player_equip" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="item_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="item_type_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Item_type" Relationship="Self.FK__item__item_type___7D439ABD" FromRole="item" ToRole="Item_type" />
+          <NavigationProperty Name="item_drop" Relationship="Self.FK__item_drop__item___01142BA1" FromRole="item" ToRole="item_drop" />
+          <NavigationProperty Name="monster_drop" Relationship="Self.FK__monster_d__item___00200768" FromRole="item" ToRole="monster_drop" />
+          <NavigationProperty Name="player_equip" Relationship="Self.FK__player_eq__item___7F2BE32F" FromRole="item" ToRole="player_equip" />
+          <NavigationProperty Name="player_inventory" Relationship="Self.FK__player_in__item___7E37BEF6" FromRole="item" ToRole="player_inventory" />
+        </EntityType>
+        <EntityType Name="item_drop">
+          <Key>
+            <PropertyRef Name="area_id" />
+            <PropertyRef Name="skill_id_need" />
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="area_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="skill_id_need" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_drop_chance" Type="Double" />
+          <Property Name="skill_level_need" Type="Int32" />
+          <NavigationProperty Name="area" Relationship="Self.FK__item_drop__area___7C4F7684" FromRole="item_drop" ToRole="area" />
+          <NavigationProperty Name="item" Relationship="Self.FK__item_drop__item___01142BA1" FromRole="item_drop" ToRole="item" />
+          <NavigationProperty Name="skill" Relationship="Self.FK__item_drop__skill__02084FDA" FromRole="item_drop" ToRole="skill" />
+        </EntityType>
+        <EntityType Name="Item_type">
+          <Key>
+            <PropertyRef Name="item_type_id" />
+          </Key>
+          <Property Name="item_type_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_type_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="items" Relationship="Self.FK__item__item_type___7D439ABD" FromRole="Item_type" ToRole="item" />
+        </EntityType>
+        <EntityType Name="monster">
+          <Key>
+            <PropertyRef Name="monster_id" />
+          </Key>
+          <Property Name="monster_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="monster_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="monster_str" Type="Int32" />
+          <Property Name="monster_agi" Type="Int32" />
+          <Property Name="monster_int" Type="Int32" />
+          <Property Name="monster_max_hp" Type="Double" />
+          <Property Name="monster_atk" Type="Double" />
+          <Property Name="monster_arm" Type="Double" />
+          <Property Name="monster_crit" Type="Double" />
+          <Property Name="monster_critdmg" Type="Double" />
+          <Property Name="monster_eva" Type="Double" />
+          <Property Name="monster_exp" Type="Int64" />
+          <NavigationProperty Name="combats" Relationship="Self.FK__combat__monster___797309D9" FromRole="monster" ToRole="combat" />
+          <NavigationProperty Name="monster_drop" Relationship="Self.FK__monster_d__monst__787EE5A0" FromRole="monster" ToRole="monster_drop" />
+          <NavigationProperty Name="areas" Relationship="Self.monster_spawn_area" FromRole="monster" ToRole="area" />
+        </EntityType>
+        <EntityType Name="monster_drop">
+          <Key>
+            <PropertyRef Name="item_id" />
+            <PropertyRef Name="monster_id" />
+          </Key>
+          <Property Name="item_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="monster_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="monster_drop_chance" Type="Double" />
+          <NavigationProperty Name="item" Relationship="Self.FK__monster_d__item___00200768" FromRole="monster_drop" ToRole="item" />
+          <NavigationProperty Name="monster" Relationship="Self.FK__monster_d__monst__787EE5A0" FromRole="monster_drop" ToRole="monster" />
+        </EntityType>
+        <EntityType Name="player">
+          <Key>
+            <PropertyRef Name="player_id" />
+          </Key>
+          <Property Name="player_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="player_location" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="player_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="player_stat_point" Type="Int32" />
+          <Property Name="player_level" Type="Int32" />
+          <Property Name="player_exp" Type="Int64" />
+          <Property Name="player_exp_next_lv" Type="Int64" />
+          <Property Name="player_str" Type="Int32" />
+          <Property Name="player_agi" Type="Int32" />
+          <Property Name="player_int" Type="Int32" />
+          <Property Name="player_atk" Type="Double" />
+          <Property Name="player_arm" Type="Double" />
+          <Property Name="player_max_hp" Type="Double" />
+          <Property Name="player_hp" Type="Double" />
+          <Property Name="player_crit" Type="Double" />
+          <Property Name="player_critdmg" Type="Double" />
+          <Property Name="player_eva" Type="Double" />
+          <NavigationProperty Name="area" Relationship="Self.FK__player__player_l__7B5B524B" FromRole="player" ToRole="area" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK__player__player_i__05D8E0BE" FromRole="player" ToRole="AspNetUsers" />
+          <NavigationProperty Name="combats" Relationship="Self.FK__combat__player_i__75A278F5" FromRole="player" ToRole="combat" />
+          <NavigationProperty Name="player_equip" Relationship="Self.FK__player_eq__playe__74AE54BC" FromRole="player" ToRole="player_equip" />
+          <NavigationProperty Name="player_inventory" Relationship="Self.FK__player_in__playe__73BA3083" FromRole="player" ToRole="player_inventory" />
+          <NavigationProperty Name="player_skill" Relationship="Self.FK__player_sk__playe__76969D2E" FromRole="player" ToRole="player_skill" />
+        </EntityType>
+        <EntityType Name="player_equip">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="player_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="item_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="equip_type_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="equip_type" Relationship="Self.FK__player_eq__equip__04E4BC85" FromRole="player_equip" ToRole="equip_type" />
+          <NavigationProperty Name="item" Relationship="Self.FK__player_eq__item___7F2BE32F" FromRole="player_equip" ToRole="item" />
+          <NavigationProperty Name="player" Relationship="Self.FK__player_eq__playe__74AE54BC" FromRole="player_equip" ToRole="player" />
+        </EntityType>
+        <EntityType Name="player_inventory">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="player_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="item_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_quantity" Type="Int32" />
+          <NavigationProperty Name="item" Relationship="Self.FK__player_in__item___7E37BEF6" FromRole="player_inventory" ToRole="item" />
+          <NavigationProperty Name="player" Relationship="Self.FK__player_in__playe__73BA3083" FromRole="player_inventory" ToRole="player" />
+        </EntityType>
+        <EntityType Name="player_skill">
+          <Key>
+            <PropertyRef Name="player_id" />
+            <PropertyRef Name="skill_id" />
+          </Key>
+          <Property Name="player_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="skill_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="skill_level" Type="Int32" />
+          <Property Name="skill_exp" Type="Int64" />
+          <Property Name="skill_exp_next_level" Type="Int64" />
+          <NavigationProperty Name="player" Relationship="Self.FK__player_sk__playe__76969D2E" FromRole="player_skill" ToRole="player" />
+          <NavigationProperty Name="skill" Relationship="Self.FK__player_sk__skill__02FC7413" FromRole="player_skill" ToRole="skill" />
+        </EntityType>
+        <EntityType Name="skill">
+          <Key>
+            <PropertyRef Name="skill_id" />
+          </Key>
+          <Property Name="skill_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="skill_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="item_drop" Relationship="Self.FK__item_drop__skill__02084FDA" FromRole="skill" ToRole="item_drop" />
+          <NavigationProperty Name="player_skill" Relationship="Self.FK__player_sk__skill__02FC7413" FromRole="skill" ToRole="player_skill" />
+        </EntityType>
+        <Association Name="FK__item_drop__area___7C4F7684">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="item_drop" Type="Self.item_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="area_id" />
+            </Principal>
+            <Dependent Role="item_drop">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player__player_l__7B5B524B">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="player" Type="Self.player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="area_id" />
+            </Principal>
+            <Dependent Role="player">
+              <PropertyRef Name="player_location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player__player_i__05D8E0BE">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="player" Type="Self.player" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="player">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__combat__monster___797309D9">
+          <End Role="monster" Type="Self.monster" Multiplicity="1" />
+          <End Role="combat" Type="Self.combat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="monster">
+              <PropertyRef Name="monster_id" />
+            </Principal>
+            <Dependent Role="combat">
+              <PropertyRef Name="monster_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__combat__player_i__75A278F5">
+          <End Role="player" Type="Self.player" Multiplicity="1" />
+          <End Role="combat" Type="Self.combat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="player">
+              <PropertyRef Name="player_id" />
+            </Principal>
+            <Dependent Role="combat">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__combat_turn__03F0984C">
+          <End Role="combat" Type="Self.combat" Multiplicity="1" />
+          <End Role="combat_turn" Type="Self.combat_turn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="combat">
+              <PropertyRef Name="player_id" />
+              <PropertyRef Name="monster_id" />
+            </Principal>
+            <Dependent Role="combat_turn">
+              <PropertyRef Name="player_id" />
+              <PropertyRef Name="monster_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_eq__equip__04E4BC85">
+          <End Role="equip_type" Type="Self.equip_type" Multiplicity="1" />
+          <End Role="player_equip" Type="Self.player_equip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equip_type">
+              <PropertyRef Name="equip_type_id" />
+            </Principal>
+            <Dependent Role="player_equip">
+              <PropertyRef Name="equip_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__item__item_type___7D439ABD">
+          <End Role="Item_type" Type="Self.Item_type" Multiplicity="1" />
+          <End Role="item" Type="Self.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_type">
+              <PropertyRef Name="item_type_id" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="item_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__item_drop__item___01142BA1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="item_drop" Type="Self.item_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="item_drop">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__monster_d__item___00200768">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="monster_drop" Type="Self.monster_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="monster_drop">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_eq__item___7F2BE32F">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="player_equip" Type="Self.player_equip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="player_equip">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_in__item___7E37BEF6">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="player_inventory" Type="Self.player_inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="player_inventory">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__item_drop__skill__02084FDA">
+          <End Role="skill" Type="Self.skill" Multiplicity="1" />
+          <End Role="item_drop" Type="Self.item_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skill">
+              <PropertyRef Name="skill_id" />
+            </Principal>
+            <Dependent Role="item_drop">
+              <PropertyRef Name="skill_id_need" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__monster_d__monst__787EE5A0">
+          <End Role="monster" Type="Self.monster" Multiplicity="1" />
+          <End Role="monster_drop" Type="Self.monster_drop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="monster">
+              <PropertyRef Name="monster_id" />
+            </Principal>
+            <Dependent Role="monster_drop">
+              <PropertyRef Name="monster_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_eq__playe__74AE54BC">
+          <End Role="player" Type="Self.player" Multiplicity="1" />
+          <End Role="player_equip" Type="Self.player_equip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="player">
+              <PropertyRef Name="player_id" />
+            </Principal>
+            <Dependent Role="player_equip">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_in__playe__73BA3083">
+          <End Role="player" Type="Self.player" Multiplicity="1" />
+          <End Role="player_inventory" Type="Self.player_inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="player">
+              <PropertyRef Name="player_id" />
+            </Principal>
+            <Dependent Role="player_inventory">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_sk__playe__76969D2E">
+          <End Role="player" Type="Self.player" Multiplicity="1" />
+          <End Role="player_skill" Type="Self.player_skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="player">
+              <PropertyRef Name="player_id" />
+            </Principal>
+            <Dependent Role="player_skill">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__player_sk__skill__02FC7413">
+          <End Role="skill" Type="Self.skill" Multiplicity="1" />
+          <End Role="player_skill" Type="Self.player_skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skill">
+              <PropertyRef Name="skill_id" />
+            </Principal>
+            <Dependent Role="player_skill">
+              <PropertyRef Name="skill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="monster_spawn_area">
+          <End Role="area" Type="Self.area" Multiplicity="*" />
+          <End Role="monster" Type="Self.monster" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ifzrtempEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="areas" EntityType="Self.area" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="combats" EntityType="Self.combat" />
+          <EntitySet Name="combat_turn" EntityType="Self.combat_turn" />
+          <EntitySet Name="equip_type" EntityType="Self.equip_type" />
+          <EntitySet Name="items" EntityType="Self.item" />
+          <EntitySet Name="item_drop" EntityType="Self.item_drop" />
+          <EntitySet Name="Item_type" EntityType="Self.Item_type" />
+          <EntitySet Name="monsters" EntityType="Self.monster" />
+          <EntitySet Name="monster_drop" EntityType="Self.monster_drop" />
+          <EntitySet Name="players" EntityType="Self.player" />
+          <EntitySet Name="player_equip" EntityType="Self.player_equip" />
+          <EntitySet Name="player_inventory" EntityType="Self.player_inventory" />
+          <EntitySet Name="player_skill" EntityType="Self.player_skill" />
+          <EntitySet Name="skills" EntityType="Self.skill" />
+          <AssociationSet Name="FK__item_drop__area___7C4F7684" Association="Self.FK__item_drop__area___7C4F7684">
+            <End Role="area" EntitySet="areas" />
+            <End Role="item_drop" EntitySet="item_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player__player_l__7B5B524B" Association="Self.FK__player__player_l__7B5B524B">
+            <End Role="area" EntitySet="areas" />
+            <End Role="player" EntitySet="players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player__player_i__05D8E0BE" Association="Self.FK__player__player_i__05D8E0BE">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="player" EntitySet="players" />
+          </AssociationSet>
+          <AssociationSet Name="FK__combat__monster___797309D9" Association="Self.FK__combat__monster___797309D9">
+            <End Role="monster" EntitySet="monsters" />
+            <End Role="combat" EntitySet="combats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__combat__player_i__75A278F5" Association="Self.FK__combat__player_i__75A278F5">
+            <End Role="player" EntitySet="players" />
+            <End Role="combat" EntitySet="combats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__combat_turn__03F0984C" Association="Self.FK__combat_turn__03F0984C">
+            <End Role="combat" EntitySet="combats" />
+            <End Role="combat_turn" EntitySet="combat_turn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_eq__equip__04E4BC85" Association="Self.FK__player_eq__equip__04E4BC85">
+            <End Role="equip_type" EntitySet="equip_type" />
+            <End Role="player_equip" EntitySet="player_equip" />
+          </AssociationSet>
+          <AssociationSet Name="FK__item__item_type___7D439ABD" Association="Self.FK__item__item_type___7D439ABD">
+            <End Role="Item_type" EntitySet="Item_type" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__item_drop__item___01142BA1" Association="Self.FK__item_drop__item___01142BA1">
+            <End Role="item" EntitySet="items" />
+            <End Role="item_drop" EntitySet="item_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__monster_d__item___00200768" Association="Self.FK__monster_d__item___00200768">
+            <End Role="item" EntitySet="items" />
+            <End Role="monster_drop" EntitySet="monster_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_eq__item___7F2BE32F" Association="Self.FK__player_eq__item___7F2BE32F">
+            <End Role="item" EntitySet="items" />
+            <End Role="player_equip" EntitySet="player_equip" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_in__item___7E37BEF6" Association="Self.FK__player_in__item___7E37BEF6">
+            <End Role="item" EntitySet="items" />
+            <End Role="player_inventory" EntitySet="player_inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__item_drop__skill__02084FDA" Association="Self.FK__item_drop__skill__02084FDA">
+            <End Role="skill" EntitySet="skills" />
+            <End Role="item_drop" EntitySet="item_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__monster_d__monst__787EE5A0" Association="Self.FK__monster_d__monst__787EE5A0">
+            <End Role="monster" EntitySet="monsters" />
+            <End Role="monster_drop" EntitySet="monster_drop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_eq__playe__74AE54BC" Association="Self.FK__player_eq__playe__74AE54BC">
+            <End Role="player" EntitySet="players" />
+            <End Role="player_equip" EntitySet="player_equip" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_in__playe__73BA3083" Association="Self.FK__player_in__playe__73BA3083">
+            <End Role="player" EntitySet="players" />
+            <End Role="player_inventory" EntitySet="player_inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_sk__playe__76969D2E" Association="Self.FK__player_sk__playe__76969D2E">
+            <End Role="player" EntitySet="players" />
+            <End Role="player_skill" EntitySet="player_skill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__player_sk__skill__02FC7413" Association="Self.FK__player_sk__skill__02FC7413">
+            <End Role="skill" EntitySet="skills" />
+            <End Role="player_skill" EntitySet="player_skill" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="monster_spawn_area" Association="Self.monster_spawn_area">
+            <End Role="area" EntitySet="areas" />
+            <End Role="monster" EntitySet="monsters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ifzrtempModelStoreContainer" CdmEntityContainer="ifzrtempEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ifzrtempModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="ifzrtempModel.area">
+              <MappingFragment StoreEntitySet="area">
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="area_name" ColumnName="area_name" />
+                <ScalarProperty Name="area_lv" ColumnName="area_lv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ifzrtempModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ifzrtempModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ifzrtempModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ifzrtempModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="displayname" ColumnName="displayname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="combats">
+            <EntityTypeMapping TypeName="ifzrtempModel.combat">
+              <MappingFragment StoreEntitySet="combat">
+                <ScalarProperty Name="player_id" ColumnName="player_id" />
+                <ScalarProperty Name="monster_id" ColumnName="monster_id" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="player_win" ColumnName="player_win" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="combat_turn">
+            <EntityTypeMapping TypeName="ifzrtempModel.combat_turn">
+              <MappingFragment StoreEntitySet="combat_turn">
+                <ScalarProperty Name="player_id" ColumnName="player_id" />
+                <ScalarProperty Name="monster_id" ColumnName="monster_id" />
+                <ScalarProperty Name="turn" ColumnName="turn" />
+                <ScalarProperty Name="player_dmg" ColumnName="player_dmg" />
+                <ScalarProperty Name="monster_dmg" ColumnName="monster_dmg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="equip_type">
+            <EntityTypeMapping TypeName="ifzrtempModel.equip_type">
+              <MappingFragment StoreEntitySet="equip_type">
+                <ScalarProperty Name="equip_type_id" ColumnName="equip_type_id" />
+                <ScalarProperty Name="equip_type_name" ColumnName="equip_type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="ifzrtempModel.item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_info" ColumnName="item_info" />
+                <ScalarProperty Name="item_type_id" ColumnName="item_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item_drop">
+            <EntityTypeMapping TypeName="ifzrtempModel.item_drop">
+              <MappingFragment StoreEntitySet="item_drop">
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="skill_id_need" ColumnName="skill_id_need" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="item_drop_chance" ColumnName="item_drop_chance" />
+                <ScalarProperty Name="skill_level_need" ColumnName="skill_level_need" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_type">
+            <EntityTypeMapping TypeName="ifzrtempModel.Item_type">
+              <MappingFragment StoreEntitySet="Item_type">
+                <ScalarProperty Name="item_type_id" ColumnName="item_type_id" />
+                <ScalarProperty Name="item_type_name" ColumnName="item_type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="monsters">
+            <EntityTypeMapping TypeName="ifzrtempModel.monster">
+              <MappingFragment StoreEntitySet="monster">
+                <ScalarProperty Name="monster_id" ColumnName="monster_id" />
+                <ScalarProperty Name="monster_name" ColumnName="monster_name" />
+                <ScalarProperty Name="monster_str" ColumnName="monster_str" />
+                <ScalarProperty Name="monster_agi" ColumnName="monster_agi" />
+                <ScalarProperty Name="monster_int" ColumnName="monster_int" />
+                <ScalarProperty Name="monster_max_hp" ColumnName="monster_max_hp" />
+                <ScalarProperty Name="monster_atk" ColumnName="monster_atk" />
+                <ScalarProperty Name="monster_arm" ColumnName="monster_arm" />
+                <ScalarProperty Name="monster_crit" ColumnName="monster_crit" />
+                <ScalarProperty Name="monster_critdmg" ColumnName="monster_critdmg" />
+                <ScalarProperty Name="monster_eva" ColumnName="monster_eva" />
+                <ScalarProperty Name="monster_exp" ColumnName="monster_exp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="monster_drop">
+            <EntityTypeMapping TypeName="ifzrtempModel.monster_drop">
+              <MappingFragment StoreEntitySet="monster_drop">
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="monster_id" ColumnName="monster_id" />
+                <ScalarProperty Name="monster_drop_chance" ColumnName="monster_drop_chance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="players">
+            <EntityTypeMapping TypeName="ifzrtempModel.player">
+              <MappingFragment StoreEntitySet="player">
+                <ScalarProperty Name="player_id" ColumnName="player_id" />
+                <ScalarProperty Name="player_location" ColumnName="player_location" />
+                <ScalarProperty Name="player_name" ColumnName="player_name" />
+                <ScalarProperty Name="player_stat_point" ColumnName="player_stat_point" />
+                <ScalarProperty Name="player_level" ColumnName="player_level" />
+                <ScalarProperty Name="player_exp" ColumnName="player_exp" />
+                <ScalarProperty Name="player_exp_next_lv" ColumnName="player_exp_next_lv" />
+                <ScalarProperty Name="player_str" ColumnName="player_str" />
+                <ScalarProperty Name="player_agi" ColumnName="player_agi" />
+                <ScalarProperty Name="player_int" ColumnName="player_int" />
+                <ScalarProperty Name="player_atk" ColumnName="player_atk" />
+                <ScalarProperty Name="player_arm" ColumnName="player_arm" />
+                <ScalarProperty Name="player_max_hp" ColumnName="player_max_hp" />
+                <ScalarProperty Name="player_hp" ColumnName="player_hp" />
+                <ScalarProperty Name="player_crit" ColumnName="player_crit" />
+                <ScalarProperty Name="player_critdmg" ColumnName="player_critdmg" />
+                <ScalarProperty Name="player_eva" ColumnName="player_eva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="player_equip">
+            <EntityTypeMapping TypeName="ifzrtempModel.player_equip">
+              <MappingFragment StoreEntitySet="player_equip">
+                <ScalarProperty Name="player_id" ColumnName="player_id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="equip_type_id" ColumnName="equip_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="player_inventory">
+            <EntityTypeMapping TypeName="ifzrtempModel.player_inventory">
+              <MappingFragment StoreEntitySet="player_inventory">
+                <ScalarProperty Name="player_id" ColumnName="player_id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="item_quantity" ColumnName="item_quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="player_skill">
+            <EntityTypeMapping TypeName="ifzrtempModel.player_skill">
+              <MappingFragment StoreEntitySet="player_skill">
+                <ScalarProperty Name="player_id" ColumnName="player_id" />
+                <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+                <ScalarProperty Name="skill_level" ColumnName="skill_level" />
+                <ScalarProperty Name="skill_exp" ColumnName="skill_exp" />
+                <ScalarProperty Name="skill_exp_next_level" ColumnName="skill_exp_next_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skills">
+            <EntityTypeMapping TypeName="ifzrtempModel.skill">
+              <MappingFragment StoreEntitySet="skill">
+                <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+                <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ifzrtempModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="monster_spawn_area" TypeName="ifzrtempModel.monster_spawn_area" StoreEntitySet="monster_spawn_area">
+            <EndProperty Name="area">
+              <ScalarProperty Name="area_id" ColumnName="area_id" />
+            </EndProperty>
+            <EndProperty Name="monster">
+              <ScalarProperty Name="monster_id" ColumnName="monster_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
