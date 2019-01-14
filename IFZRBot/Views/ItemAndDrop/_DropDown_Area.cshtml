@@ -1,0 +1,44 @@
+﻿@using IFZRBot.Models
+@model IEnumerable<area>
+
+
+<div class="card">
+    <div class="card-header" style="text-align:left" id="header_@ViewBag.dropdownid" >
+        <div class="form-group row float-md-left" style="min-width:330px;">
+            <div class="col-md-11">
+                <select name="dropdownarea_@ViewBag.dropdownid" class="form-control">
+                    @foreach (area a in Model)
+                    {
+                        <option value="@a.area_id">@a.area_name (LV: @a.area_lv)</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <i class="fas fa-angle-down float-md-right" style="font-size:48px;" data-toggle="collapse" data-target="#collapse_@ViewBag.dropdownid" aria-expanded="true" aria-controls="collapse_@ViewBag.dropdownid" ></i>
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="collapse_@ViewBag.dropdownid" class="collapse show" aria-labelledby="header_@ViewBag.dropdownid" data-parent="#area-container">
+        <div class="card-body">
+            <input type="hidden" id="countskill_@ViewBag.dropdownid" name="countskill_@ViewBag.dropdownid" value="0" />
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th class="text-center">Skill</th>
+                        <th class="text-center">Skill LV</th>
+                        <th class="text-center">Drop Chance</th>
+                    </tr>
+                </thead>
+                <tbody id="skill-container_@ViewBag.dropdownid"></tbody>
+            </table>
+            <div class="form-group">
+                <a class="btn btn-outline-success" onclick="AddSkill(@ViewBag.dropdownid)">+ Skill</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

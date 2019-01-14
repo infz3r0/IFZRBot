@@ -1,0 +1,15 @@
+﻿@using IFZRBot.Models
+@model IEnumerable<Item_type>
+
+<div class="form-group">
+    <label for="item_type" class="col-md-2">Item type</label>
+    <div class="col-md-10">
+        <select name="item_type" class="form-control">
+            @foreach (Item_type i in Model)
+            {
+                <option value="@i.item_type_id">@i.item_type_name </option>
+            }
+
+        </select>
+    </div>
+</div>

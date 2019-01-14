@@ -1,0 +1,86 @@
+﻿@model IFZRBot.Models.item
+
+@using (Html.BeginForm("Create", "ItemAndDrop", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="">
+        <h4>Item</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.item_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.item_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.item_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.item_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.item_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.item_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.item_info, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.item_info, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.item_info, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.Action("_DropDown_ItemType")
+
+        <div id="area-container">
+            <input type="hidden" id="countarea" name="countarea" value=0 />
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a class="btn btn-outline-success" onclick="AddArea()">+ Area</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+</div>
+
+
+@section scripts
+{
+    <script>
+        function AddArea() {
+            var count = parseInt($('#countarea').val());
+            $.get("./_DropDown_Area/?dropdownid=" + count, function (data, status) {
+                //alert("Data: " + data);
+                //alert('Status:' + status);
+                $('#area-container').append(data);
+
+            });
+            count += 1;
+            $('#countarea').val(count);
+        }
+        function AddSkill(areaid) {
+            var count = parseInt($('#countskill_' + areaid).val());
+            $.get("./_DropDown_Skill/?dropdownareaid=" + areaid + "&dropdownskillid=" + count, function (data, status) {
+                //alert("Data: " + data + "\nStatus: " + status);
+                $('#skill-container_' + areaid).append(data);
+
+            });
+            count += 1;
+            $('#countskill_' + areaid).val(count);
+        }
+    </script>
+}

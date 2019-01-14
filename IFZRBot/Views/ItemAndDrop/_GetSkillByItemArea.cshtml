@@ -1,0 +1,23 @@
+﻿@using IFZRBot.Models
+@model IEnumerable<item_drop>
+
+
+<table class="table table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th class="text-center">Skill</th>
+            <th class="text-center">Skill LV</th>
+            <th class="text-center">Drop Chance</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (item_drop item in Model)
+        {
+        <tr>
+            <td class="text-center">@item.skill.skill_name</td>
+            <td class="text-center">@item.skill_level_need</td>
+            <td class="text-center">@item.item_drop_chance</td>
+        </tr>
+        }
+    </tbody>
+</table>

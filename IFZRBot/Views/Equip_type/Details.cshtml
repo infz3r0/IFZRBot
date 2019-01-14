@@ -1,0 +1,27 @@
+﻿@model IFZRBot.Models.equip_type
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>equip_type</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.equip_type_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.equip_type_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.equip_type_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

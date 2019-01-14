@@ -1,0 +1,8 @@
+﻿@using IFZRBot.Models;
+@model IEnumerable<area>
+
+@foreach (area item in Model)
+{
+    <h5>@item.area_name (LV: @item.area_lv)</h5>
+    @Html.Action("_GetSkillByItemArea", new { itemID = ViewBag.itemID, areaID = item.area_id })
+}

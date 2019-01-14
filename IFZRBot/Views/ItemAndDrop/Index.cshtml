@@ -1,0 +1,63 @@
+﻿@using IFZRBot.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<item>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List item</h2>
+
+<div id="accordion">
+    @foreach (item i in Model)
+    {
+    <div class="card">
+        <div class="card-header btn" style="text-align:left" id="header_@i.item_id" data-toggle="collapse" data-target="#collapse_@i.item_id" aria-expanded="true" aria-controls="collapse_@i.item_id">
+            @i.item_name
+        </div>
+
+        <div id="collapse_@i.item_id" class="collapse" aria-labelledby="header_@i.item_id" data-parent="#accordion">
+            <div class="card-body">
+                @Html.Action("_GetAreaByItem", new { itemID = i.item_id})
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
